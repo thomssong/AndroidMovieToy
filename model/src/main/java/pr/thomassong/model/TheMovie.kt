@@ -21,10 +21,10 @@ data class TheMovie (
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("original_title") val originalTitle: String,
     @SerializedName("genre_ids") val genreIds: List<Long>,
-    @SerializedName("backdrop_path") val backdropPath: String,
+    @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("overview") val overview: String,
-    @SerializedName("release_date") val releaseDate: Date
+    @SerializedName("release_date") val releaseDate: Date?
 )
 
 fun String.toW500Url(): String{
