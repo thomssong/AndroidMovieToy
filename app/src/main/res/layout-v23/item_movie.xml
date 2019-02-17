@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
+	<data>
+		<import type="android.text.TextUtils"/>
+		<variable name="movie" type="pr.thomassong.model.TheMovie"/>
+		<variable name="listener" type="pr.thomassong.movie.ui.list.EventAction"/>
+	</data>
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:onClick="@{() -> listener.onMovieClicked(movie)}"
+			android:background="?android:selectableItemBackground">
+
+		<androidx.appcompat.widget.AppCompatImageView
+				android:id="@+id/background"
+				android:layout_width="0dp"
+				android:layout_height="0dp"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintDimensionRatio="1:0.55"
+				android:foreground="@drawable/fg_item_movie"
+				app:backdropUrl="@{movie.backdropPath}"
+				tools:background="@android:color/holo_blue_dark"/>
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:id="@+id/rating"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="16dp"
+				android:layout_marginBottom="8dp"
+				app:layout_constraintBottom_toBottomOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				android:paddingTop="2dp"
+				android:paddingBottom="2dp"
+				android:paddingStart="8dp"
+				android:paddingEnd="8dp"
+				android:gravity="center"
+				android:drawableStart="@drawable/ic_star_outline"
+				android:textColor="@android:color/white"
+				android:background="@drawable/bg_text_rating"
+				android:text="@{String.valueOf(movie.voteAverage)}"
+				tools:text="5.5"/>
+
+		<androidx.appcompat.widget.AppCompatTextView
+				android:textAppearance="@style/TextAppearance.AppCompat.Title"
+				android:id="@+id/title"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="64dp"
+				android:layout_marginEnd="16dp"
+				android:layout_marginBottom="4dp"
+				app:layout_constraintBottom_toTopOf="@id/rating"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintEnd_toEndOf="parent"
+				android:gravity="end"
+				android:textColor="@android:color/white"
+				android:maxLines="2"
+				android:text="@{movie.title ?? movie.originalTitle}"
+				tools:text="Movie Title"/>
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
