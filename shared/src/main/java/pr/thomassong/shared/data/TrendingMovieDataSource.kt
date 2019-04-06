@@ -5,6 +5,7 @@ import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import pr.thomassong.model.TheMovie
 import pr.thomassong.model.TheMovieResponse
+import pr.thomassong.shared.data.remote.TheMovieService
 import timber.log.Timber
 
 

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import androidx.paging.PageKeyedDataSource
 import pr.thomassong.model.TheMovie
-import pr.thomassong.shared.data.TheMovieService
+import pr.thomassong.shared.data.remote.TheMovieService
 import pr.thomassong.shared.data.TrendingMovieDataSource
 import javax.inject.Inject
 

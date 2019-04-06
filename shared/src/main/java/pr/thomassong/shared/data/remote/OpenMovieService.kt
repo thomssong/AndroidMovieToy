@@ -1,4 +1,4 @@
-package pr.thomassong.shared.data
+package pr.thomassong.shared.data.remote
 
 import io.reactivex.Single
 import pr.thomassong.shared.BuildConfig
