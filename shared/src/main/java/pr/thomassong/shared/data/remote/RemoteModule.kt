@@ -59,7 +59,7 @@ class RemoteModule {
         )
         .baseUrl("https://api.themoviedb.org/3/")
         .addConverterFactory(
-            GsonConverterFactory.create(GsonBuilder().setDateFormat("YYYY-mm-dd").create())
+            GsonConverterFactory.create(GsonBuilder().setDateFormat("yyyy-MM-dd").create())
         )
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .build()
