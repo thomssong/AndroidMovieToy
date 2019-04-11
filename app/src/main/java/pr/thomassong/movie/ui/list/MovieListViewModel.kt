@@ -10,6 +10,7 @@ import pr.thomassong.movie.data.TheMovieParcel
 import pr.thomassong.movie.data.mapper.TheMovieMapper
 import pr.thomassong.shared.domain.movie.GetTrendingMovieList
 import pr.thomassong.shared.executor.AppExecutors
+import pr.thomassong.shared.result.Event
 import javax.inject.Inject
 
 
@@ -26,8 +27,8 @@ class MovieListViewModel @Inject constructor(
     val trendingMovieList: LiveData<PagedList<TheMovie>>
         get() = _trendingMovieList
 
-    private val _navigateToMovieDetail = MutableLiveData<TheMovieParcel>()
-    val navigateToMovieDetail: LiveData<TheMovieParcel>
+    private val _navigateToMovieDetail = MutableLiveData<Event<TheMovieParcel>>()
+    val navigateToMovieDetail: LiveData<Event<TheMovieParcel>>
         get() = _navigateToMovieDetail
 
     init {
@@ -44,7 +45,7 @@ class MovieListViewModel @Inject constructor(
 
     override fun onMovieClicked(movie: TheMovie?) {
         movie?.let {
-            _navigateToMovieDetail.postValue(theMovieMapper.mapToParcel(it))
+            _navigateToMovieDetail.postValue(Event(theMovieMapper.mapToParcel(it)))
         }
     }
 }

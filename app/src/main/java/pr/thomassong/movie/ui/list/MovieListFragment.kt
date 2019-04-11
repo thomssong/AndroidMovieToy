@@ -7,9 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import dagger.android.support.DaggerFragment
 import pr.thomassong.movie.databinding.FragmentMovieListBinding
+import pr.thomassong.shared.result.EventObserver
 import javax.inject.Inject
 
 
@@ -30,7 +31,7 @@ class MovieListFragment: DaggerFragment() {
             .get(MovieListViewModel::class.java)
 
         val binding = FragmentMovieListBinding.inflate(inflater).apply {
-            setLifecycleOwner(this@MovieListFragment)
+            lifecycleOwner = this@MovieListFragment
         }
 
         val movieListAdapter = MovieListAdapter(this, viewModel)
@@ -42,12 +43,9 @@ class MovieListFragment: DaggerFragment() {
             movieListAdapter.submitList(it)
         })
 
-        viewModel.navigateToMovieDetail.observe(this, Observer {
-            it?.let {
-                val direction = MovieListFragmentDirections.actionToMovieDetail(it)
-                Navigation.findNavController(binding.root)
-                    .navigate(direction)
-            }
+        viewModel.navigateToMovieDetail.observe(this, EventObserver {
+            val direction = MovieListFragmentDirections.actionToMovieDetail(it)
+            findNavController().navigate(direction)
         })
 
         binding.vm = viewModel
