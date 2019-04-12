@@ -12,7 +12,7 @@ import pr.thomassong.shared.di.FragmentScope
 internal abstract class MovieListModule {
 
     @FragmentScope
-    @ContributesAndroidInjector(modules = [])
+    @ContributesAndroidInjector
     internal abstract fun movieListFragment(): MovieListFragment
 
 }

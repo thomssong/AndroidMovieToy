@@ -31,7 +31,7 @@ class MovieListAdapter(
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.binding.apply {
-            setLifecycleOwner(this@MovieListAdapter.lifecycleOwner)
+            lifecycleOwner = this@MovieListAdapter.lifecycleOwner
             listener = viewModel
             getItem(position)?.let { movie = it }
             executePendingBindings()
