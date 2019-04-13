@@ -3,4 +3,13 @@
 
 	<!-- TODO: Remove or change this placeholder text -->
 	<string name="hello_blank_fragment">Hello blank fragment</string>
+	
+	<string name="tbd">TBD</string>
+	<string name="format_runtime">\u0020\u2022\u0020%d min</string>
+
+	<string name="genre">Genre</string>
+	<string name="director">Director</string>
+	<string name="cast">Cast</string>
+
+	<string name="btn_see_credit">See full cast &amp; crew</string>
 </resources>
