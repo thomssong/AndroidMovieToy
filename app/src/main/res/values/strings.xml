@@ -10,6 +10,7 @@
 	<string name="genre">Genre</string>
 	<string name="director">Director</string>
 	<string name="cast">Cast</string>
+	<string name="image">Image</string>
 
 	<string name="btn_see_credit">See full cast &amp; crew</string>
 </resources>
