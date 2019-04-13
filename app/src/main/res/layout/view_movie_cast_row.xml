@@ -9,6 +9,10 @@
 		<variable
 				name="cast"
 				type="pr.thomassong.model.TheMovieCast"/>
+
+		<variable
+				name="listener"
+				type="pr.thomassong.movie.ui.detail.MovieDetailEventAction"/>
 	</data>
 
 	<androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +23,8 @@
 			android:paddingStart="16dp"
 			android:paddingEnd="16dp"
 			android:foreground="?android:selectableItemBackground"
-			android:visibility="@{cast != null ? View.VISIBLE : View.GONE}">
+			android:visibility="@{cast != null ? View.VISIBLE : View.GONE}"
+			android:onClick="@{() -> listener.onMovieCastClicked(cast)}">
 
 		<androidx.appcompat.widget.AppCompatImageView
 				android:id="@+id/thumb"

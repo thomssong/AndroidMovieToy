@@ -7,6 +7,9 @@
 		<variable
 				name="data"
 				type="pr.thomassong.model.TheMovieDetailHeader"/>
+		<variable
+				name="listener"
+				type="pr.thomassong.movie.ui.detail.MovieDetailEventAction"/>
 	</data>
 
 	<com.google.android.material.card.MaterialCardView
@@ -47,7 +50,8 @@
 					android:layout_marginTop="14dp"
 					app:itemSpacing="8dp"
 					app:lineSpacing="8dp"
-					app:genreItems="@{data.genres}"/>
+					app:genreItems="@{data.genres}"
+					app:genreClickEvent="@{listener}"/>
 
 		</LinearLayout>
 
