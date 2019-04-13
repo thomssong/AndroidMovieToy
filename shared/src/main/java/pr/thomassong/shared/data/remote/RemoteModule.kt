@@ -10,7 +10,6 @@ import pr.thomassong.shared.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import javax.inject.Singleton
 
 
@@ -48,7 +47,7 @@ class RemoteModule {
                     val request = it.request()
                     val queryUrl = request.url().newBuilder()
                         .addQueryParameter("api_key", BuildConfig.TMDB_API_KEY)
-                        .addQueryParameter("language", "${Locale.getDefault().language}-${Locale.getDefault().country}")
+//                        .addQueryParameter("language", "${Locale.getDefault().language}-${Locale.getDefault().country}")
                         .build()
 
                     it.proceed(request.newBuilder()
