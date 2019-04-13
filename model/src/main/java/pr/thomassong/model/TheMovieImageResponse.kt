@@ -7,10 +7,13 @@ import com.google.gson.annotations.SerializedName
  *  author thomassong
  */
 data class TheMovieImageResponse (
-    override val posId: Int = POS_ID_IMAGE,
     @SerializedName("id") val id: Long,
-    @SerializedName("results") val results: List<TheMovieImage>
-): TheMovieDetails
+    @SerializedName("backdrops") val backdrops: List<TheMovieImage>,
+    @SerializedName("posters") val posters: List<TheMovieImage>
+): TheMovieDetails {
+    override val posId: Int
+        get() = POS_ID_IMAGE
+}
 
 data class TheMovieImage (
     @SerializedName("aspect_ratio") val ratio: Float,
