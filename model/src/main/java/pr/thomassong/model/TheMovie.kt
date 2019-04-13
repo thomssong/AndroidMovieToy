@@ -24,7 +24,14 @@ data class TheMovie (
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("overview") val overview: String,
-    @SerializedName("release_date") val releaseDate: Date?
+    @SerializedName("release_date") val releaseDate: Date?,
+    // API : detail
+    @SerializedName("genres") val genres: List<TheMovieGenre> = emptyList(),
+    @SerializedName("homepage") val homepage: String = "",
+    @SerializedName("imdb_id") val imdbId: String = "",
+    @SerializedName("runtime") val runtime: Int = 0,
+    @SerializedName("status") val status: String = "",
+    @SerializedName("tagline") val tagline: String = ""
 )
 
 fun String.toW500Url(): String{
