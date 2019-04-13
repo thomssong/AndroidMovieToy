@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools">
+
+	<data>
+		<variable
+				name="data"
+				type="pr.thomassong.model.TheMovieCredits"/>
+	</data>
+
+	<com.google.android.material.card.MaterialCardView
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+		<androidx.constraintlayout.widget.ConstraintLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="16dp"
+				app:findDirector="@{data.crew}">
+
+			<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/title_director"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:layout_constraintTop_toTopOf="parent"
+					app:layout_constraintStart_toStartOf="parent"
+					android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+					android:text="@string/director"/>
+
+			<androidx.appcompat.widget.AppCompatTextView
+					android:id="@+id/title_cast"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					app:layout_constraintTop_toBottomOf="@+id/row_movie_director"
+					app:layout_constraintStart_toStartOf="parent"
+					android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+					android:text="@string/cast"/>
+
+			<androidx.constraintlayout.widget.Barrier
+					android:id="@+id/barrier_title"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					app:barrierDirection="end"
+					app:constraint_referenced_ids="title_director,title_cast"/>
+
+			<include
+					layout="@layout/view_movie_crew_row"
+					android:id="@+id/row_movie_director"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="16dp"
+					app:layout_constraintTop_toTopOf="@id/title_director"
+					app:layout_constraintStart_toEndOf="@id/barrier_title"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:showDetail="@{false}"/>
+
+			<include
+					layout="@layout/view_movie_cast_row"
+					android:id="@+id/row_movie_cast1"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="16dp"
+					app:layout_constraintTop_toTopOf="@id/title_cast"
+					app:layout_constraintStart_toEndOf="@id/barrier_title"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:cast="@{!data.cast.empty &amp;&amp; data.cast.size() > 0 ? data.cast.get(0) : null}"/>
+
+			<include
+					layout="@layout/view_movie_cast_row"
+					android:id="@+id/row_movie_cast2"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="16dp"
+					app:layout_constraintTop_toBottomOf="@id/row_movie_cast1"
+					app:layout_constraintStart_toEndOf="@id/barrier_title"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:cast="@{!data.cast.empty &amp;&amp; data.cast.size() > 1 ? data.cast.get(1) : null}"/>
+
+			<include
+					layout="@layout/view_movie_cast_row"
+					android:id="@+id/row_movie_cast3"
+					android:layout_width="0dp"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="16dp"
+					app:layout_constraintTop_toBottomOf="@id/row_movie_cast2"
+					app:layout_constraintStart_toEndOf="@id/barrier_title"
+					app:layout_constraintEnd_toEndOf="parent"
+					app:cast="@{!data.cast.empty &amp;&amp; data.cast.size() > 2 ? data.cast.get(2) : null}"/>
+
+			<androidx.appcompat.widget.AppCompatButton
+					android:id="@+id/btn_see_credit"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:minHeight="0dp"
+					android:layout_marginTop="16dp"
+					app:layout_constraintTop_toBottomOf="@id/row_movie_cast3"
+					app:layout_constraintEnd_toEndOf="parent"
+					android:paddingTop="4dp"
+					android:paddingBottom="4dp"
+					android:paddingStart="8dp"
+					android:paddingEnd="8dp"
+					android:textAllCaps="false"
+					android:text="@string/btn_see_credit"
+					android:background="?android:selectableItemBackground"/>
+
+		</androidx.constraintlayout.widget.ConstraintLayout>
+
+	</com.google.android.material.card.MaterialCardView>
+</layout>

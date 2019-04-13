@@ -1,10 +1,10 @@
 package pr.thomassong.movie.di
 
 import dagger.Component
-import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import pr.thomassong.movie.MovieApplication
+import pr.thomassong.shared.data.remote.RemoteModule
 import pr.thomassong.shared.di.DataModule
 import javax.inject.Singleton
 
@@ -17,6 +17,7 @@ import javax.inject.Singleton
     modules = [
         AppModule::class,
         DataModule::class,
+        RemoteModule::class,
         ViewModelModule::class,
         ActivityBindingModule::class,
         AndroidSupportInjectionModule::class
