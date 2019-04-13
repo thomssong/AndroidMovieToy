@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.appbar.AppBarLayout
 import dagger.android.support.DaggerFragment
@@ -35,6 +36,7 @@ class MovieDetailFragment : DaggerFragment() {
         binding = FragmentMovieDetailBinding.inflate(inflater).apply {
             lifecycleOwner = this@MovieDetailFragment
 
+            toolbar.setNavigationOnClickListener { findNavController().navigateUp() }
             layoutAppbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, offset ->
                 appBarLayout?.let {
                     title.alpha = (it.totalScrollRange.toFloat() - Math.abs(offset)) / it.totalScrollRange
