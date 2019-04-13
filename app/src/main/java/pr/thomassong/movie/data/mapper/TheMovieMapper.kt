@@ -9,6 +9,23 @@ import javax.inject.Inject
  *  author thomassong
  */
 open class TheMovieMapper @Inject constructor(): Mapper<TheMovieParcel, TheMovie> {
+    override fun mapFromParcel(parcel: TheMovieParcel): TheMovie = TheMovie(
+        parcel.voteCnt,
+        parcel.id,
+        parcel.video,
+        parcel.voteAverage,
+        parcel.title,
+        0F,
+        parcel.posterPath,
+        parcel.originalLanguage,
+        parcel.originalTitle,
+        emptyList(),
+        parcel.backdropPath,
+        parcel.adult,
+        parcel.overview,
+        parcel.releaseDate
+    )
+
     override fun mapToParcel(model: TheMovie): TheMovieParcel = TheMovieParcel(
         model.voteCnt,
         model.id,
