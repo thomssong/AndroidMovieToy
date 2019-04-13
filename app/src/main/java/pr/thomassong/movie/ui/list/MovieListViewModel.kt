@@ -21,7 +21,7 @@ class MovieListViewModel @Inject constructor(
     appExecutors: AppExecutors,
     getTrendingMovieList: GetTrendingMovieList,
     private val theMovieMapper: TheMovieMapper
-): ViewModel(), EventAction {
+): ViewModel(), MovieListEventAction {
 
     private val _trendingMovieList: LiveData<PagedList<TheMovie>>
     val trendingMovieList: LiveData<PagedList<TheMovie>>
@@ -50,6 +50,6 @@ class MovieListViewModel @Inject constructor(
     }
 }
 
-interface EventAction {
+interface MovieListEventAction {
     fun onMovieClicked(movie: TheMovie?)
 }
