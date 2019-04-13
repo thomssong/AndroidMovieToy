@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.appbar.AppBarLayout
 import dagger.android.support.DaggerFragment
 import pr.thomassong.movie.databinding.FragmentMovieDetailBinding
 import pr.thomassong.movie.widget.recyclerview.DetailsItemDecoration
@@ -33,6 +34,13 @@ class MovieDetailFragment : DaggerFragment() {
 
         binding = FragmentMovieDetailBinding.inflate(inflater).apply {
             lifecycleOwner = this@MovieDetailFragment
+
+            layoutAppbar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, offset ->
+                appBarLayout?.let {
+                    title.alpha = (it.totalScrollRange.toFloat() - Math.abs(offset)) / it.totalScrollRange
+                    layoutCollapsingToolbar.title = if(it.totalScrollRange + offset == 0) args.movie.title else ""
+                }
+            })
         }
 
         binding.vm = viewModel
@@ -53,6 +61,8 @@ class MovieDetailFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.setupMovie(args.movie)
+
+
     }
 
 }
