@@ -6,10 +6,7 @@ import androidx.lifecycle.ViewModel
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
-import pr.thomassong.model.TheMovie
-import pr.thomassong.model.TheMovieCredits
-import pr.thomassong.model.TheMovieDetailHeader
-import pr.thomassong.model.TheMovieDetails
+import pr.thomassong.model.*
 import pr.thomassong.movie.data.TheMovieParcel
 import pr.thomassong.movie.data.mapper.TheMovieMapper
 import pr.thomassong.shared.domain.movie.GetMovieCredits
@@ -44,7 +41,8 @@ class MovieDetailViewModel @Inject constructor(
 
         Observable.concat(
             getMovieDetail.execute(parcel.id).toObservable(),
-            getMovieCredits.execute(parcel.id).toObservable()
+            getMovieCredits.execute(parcel.id).toObservable(),
+            getMovieImages.execute(parcel.id).toObservable()
         ).subscribe(object : Observer<Any> {
             override fun onSubscribe(d: Disposable) {
                 Timber.d("onSubscribe = $d")
@@ -57,6 +55,7 @@ class MovieDetailViewModel @Inject constructor(
                         addDetailsItem(TheMovieDetailHeader(overview = t.overview, genres = t.genres))
                     }
                     is TheMovieCredits -> addDetailsItem(t)
+                    is TheMovieImageResponse -> addDetailsItem(t)
                     else -> Timber.e("Something unexpected")
                 }
             }
